@@ -68,7 +68,7 @@ for (const radioBtn of formEl) {
   radioBtn.addEventListener("change", () => {
     if (radioBtn.checked) {
       tableEl.innerHTML = "";
-      renderTable(defaultFronGear, defaultRearGear, 10, 5, radioBtn.value);
+      renderTable(defaultFronGear, defaultRearGear, 10, 6, radioBtn.value);
     }
   });
 }
