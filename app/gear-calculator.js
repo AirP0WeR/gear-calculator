@@ -5,17 +5,6 @@ let maxRearGear = 36;
 const defaultRearGear = 15;
 let minReartGear = 9;
 
-// let frontGear = [];
-// let rearGear = [];
-
-// let outputTable = {
-//   frontGear: "",
-//   rearGear: "",
-//   gearRatio: "",
-//   gearRatioToOneTurnLength: "",
-//   gearRatioOldSchool: "",
-// };
-
 let gearRatio;
 let gearRatioOldSchool;
 let gearRatioToOneTurnLength;
@@ -29,6 +18,8 @@ const gearRatioOldEl = document.getElementById("gear-ratio-old-el");
 const gearRatioOneTurnEl = document.getElementById("gear-ratio-one-turn-el");
 
 const tableEl = document.getElementById("output-table-el");
+
+const formEl = document.querySelectorAll('input[name="gear-choice"]');
 
 // render front gear input list
 for (i = minFrontGear; i < maxFrontGear; i++) {
@@ -73,16 +64,13 @@ wheeliSizeEl.addEventListener("change", () => {
   renderGearRatio();
 });
 
-//render gear ratio
-function renderGearRatio() {
-  calculateGearRatio(
-    frontGearInputListEl.value,
-    rearGearInputListEl.value,
-    wheeliSizeEl.value
-  );
-  gearRatioEl.innerHTML = `Gear ratio: ${gearRatio}`;
-  gearRatioOldEl.innerHTML = `Gear ratio in old school: ${gearRatioOldSchool}`;
-  gearRatioOneTurnEl.innerHTML = `Gear ratio in one turn in mm.: ${gearRatioToOneTurnLength}`;
+for (const radioBtn of formEl) {
+  radioBtn.addEventListener("change", () => {
+    if (radioBtn.checked) {
+      tableEl.innerHTML = "";
+      renderTable(defaultFronGear, defaultRearGear, 10, 5, radioBtn.value);
+    }
+  });
 }
 
 // get front and rear tooth and calculate gear ratio.
@@ -99,35 +87,75 @@ function calculateGearRatio(frontGear, rearGear, wheelSize) {
   return { gearRatio, gearRatioToOneTurnLength, gearRatioOldSchool };
 }
 
-
-{/* <tr>
-  <th>Person 1</th>
-  <th>Person 2</th>
-  <th>Person 3</th>
-</tr> */}
-
-function addTable(top, left, information) {
-  
-
+//render gear ratio
+function renderGearRatio() {
+  calculateGearRatio(
+    frontGearInputListEl.value,
+    rearGearInputListEl.value,
+    wheeliSizeEl.value
+  );
+  gearRatioEl.innerHTML = `Gear ratio: ${gearRatio}`;
+  gearRatioOldEl.innerHTML = `Gear ratio in old school: ${gearRatioOldSchool}`;
+  gearRatioOneTurnEl.innerHTML = `Gear ratio in one turn in mm.: ${gearRatioToOneTurnLength}`;
 }
 
+function renderTable(
+  defaultFronGear,
+  defaultRearGear,
+  frontGearDif,
+  rearGearDif,
+  dataChoise
+) {
+  // делаем итериции по задней передаче и создаём строки
 
-// делаем итериции по задней передаче и создаём строки
-for (let i = defaultRearGear - 2; i < defaultRearGear + 2; i++) {
-  // creates a table row
-  const row = document.createElement("tr");
-  for (let j = defaultFronGear - 3; j < defaultFronGear + 3; j++) {
-    const cell = document.createElement("td");
-    let gearRatioTest = calculateGearRatio(j, i, wheeliSizeEl.value);
-    const cellText = document.createTextNode(`${j} / ${i} ${gearRatioTest.gearRatio}`);
-    cell.appendChild(cellText);
-    row.appendChild(cell);
+  for (
+    let i = defaultRearGear - rearGearDif;
+    i < defaultRearGear + rearGearDif;
+    i++
+  ) {
+    // creates a table row
+    const row = document.createElement("tr");
+
+    for (
+      let j = defaultFronGear - frontGearDif;
+      j < defaultFronGear + frontGearDif;
+      j++
+    ) {
+      if (
+        i == defaultRearGear - rearGearDif &&
+        j == defaultFronGear - frontGearDif
+      ) {
+        const cell = document.createElement("th");
+        const cellText = document.createTextNode(`x`);
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+      } else if (i == defaultRearGear - rearGearDif && j > 0) {
+        const cell = document.createElement("th");
+        const cellText = document.createTextNode(`${j}`);
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+      } else if (j == defaultFronGear - frontGearDif && i > 0) {
+        const cell = document.createElement("th");
+        const cellText = document.createTextNode(`${i}`);
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+      } else if (
+        i > defaultRearGear - rearGearDif &&
+        j > defaultFronGear - frontGearDif
+      ) {
+        const cell = document.createElement("td");
+        let gearRatio = calculateGearRatio(j, i, wheeliSizeEl.value);
+        const cellText = document.createTextNode(gearRatio[dataChoise]);
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+      }
+    }
+    // add the row to the end of the table body
+    tableEl.appendChild(row);
   }
-  // add the row to the end of the table body
-  tableEl.appendChild(row);
 }
-
-
 
 // default render
+renderTable(defaultFronGear, defaultRearGear, 10, 6, "gearRatioOldSchool");
+
 renderGearRatio();

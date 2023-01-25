@@ -11,32 +11,36 @@
     <h1>Gear calculator</h1>
     <b>Wheel size</b>
     <input id="wheel-size-input-el" type="number" value="2096">
-    <p></p>
+    <br>
     <b>Front gear</b>
     <select id="front-chain-ring-el"></select>
 
-    <p></p>
+    <br>
     <b>Rear gear</b>
     <select id="rear-chain-ring-el"></select>
     <!-- <input id="rear-gear-input-el" type="number" value="15"> -->
-    <p></p>
+    <br>
     <b id="gear-ratio-el">Gear ratio: </b>
-    <p></p>
+    <br>
     <b id="gear-ratio-old-el">Gear ratio in old school: </b>
-    <p></p>
+    <br>
     <b id="gear-ratio-one-turn-el">Gear ratio in one turn in mm.: </b>
-    <p></p>
+    <br>
 
     <table id="output-table-el">
-        <tr>
-            <th>Person 1</th>
-            <th>Person 2</th>
-            <th>Person 3</th>
-          </tr>
     </table>
-
+    <form id="gear-calculate-choise">
+        <p>Please select ratio:</p>
+        <input type="radio" id="choise-gear-ratio-el" name="gear-choice" value="gearRatio">
+        <label for="choise-gear-ratio-el">Gear ratio</label><br>
+        <input type="radio" id="choise-gear-ratio-old-school-el" name="gear-choice" value="gearRatioOldSchool" checked>
+        <label for="choise-gear-ratio-old-school-el">Old school gear ratio</label><br>
+        <input type="radio" id="choise-gear-ratio-in-mm-el" name="gear-choice" value="gearRatioToOneTurnLength">
+        <label for="choise-gear-ratio-in-mm-el">Gear ration in mm rotation</label><br><br>
+    </form>
 
     <script src="/app/gear-calculator.js"></script>
+    <script src="/app/test.js"></script>
 
 </body>
 
