@@ -105,9 +105,9 @@ function renderGearRatio() {
     rearGearInputListEl.value,
     wheeliSizeEl.value
   );
-  gearRatioEl.innerHTML = `Gear ratio: ${gearRatio}`;
-  gearRatioOldEl.innerHTML = `Gear ratio in old school: ${gearRatioOldSchool}`;
-  gearRatioOneTurnEl.innerHTML = `Gear ratio in one turn in mm.: ${gearRatioToOneTurnLength}`;
+  gearRatioEl.innerHTML = `Gear ratio: <b>${gearRatio}</b>`;
+  gearRatioOldEl.innerHTML = `Gear ratio in old school: <b>${gearRatioOldSchool}</b>`;
+  gearRatioOneTurnEl.innerHTML = `Gear ratio in one turn in mm.: <b>${gearRatioToOneTurnLength}</b>`;
 }
 
 function renderTable(

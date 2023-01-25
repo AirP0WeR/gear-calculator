@@ -5,41 +5,86 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gear calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
 </head>
 
 <body>
-    <h1>Gear calculator</h1>
-    <b>Wheel size</b>
-    <input id="wheel-size-input-el" type="number" value="2096">
-    <br>
-    <b>Front gear</b>
-    <select id="front-chain-ring-el"></select>
+    <div class="container ">
+        <h1 class="text-center">Gear calculator</h1>
 
-    <br>
-    <b>Rear gear</b>
-    <select id="rear-chain-ring-el"></select>
-    <!-- <input id="rear-gear-input-el" type="number" value="15"> -->
-    <br>
-    <b id="gear-ratio-el">Gear ratio: </b>
-    <br>
-    <b id="gear-ratio-old-el">Gear ratio in old school: </b>
-    <br>
-    <b id="gear-ratio-one-turn-el">Gear ratio in one turn in mm.: </b>
-    <br>
+        <div class="row">
+            <div class="col col-4">
+                <div class="row mt-1">
+                    <div class="col-6">
+                        <b>Wheel size</b>
+                    </div>
+                    <div class="col-6">
+                        <input class="input-group-text" id="wheel-size-input-el" type="number" value="2096">
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-6">
+                        <b>Front gear</b>
+                    </div>
+                    <div class="col-6">
+                        <select class="form-select" id="front-chain-ring-el" ></select>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-6">
+                        <b>Rear gear</b>
+                    </div>
+                    <div class="col-6">
+                        <select class="form-select" id="rear-chain-ring-el" ></select>
+                    </div>
+                </div>
 
-    <table id="output-table-el">
-    </table>
-    <form id="gear-calculate-choise">
-        <p>Please select ratio:</p>
-        <input type="radio" id="choise-gear-ratio-el" name="gear-choice" value="gearRatio">
-        <label for="choise-gear-ratio-el">Gear ratio</label><br>
-        <input type="radio" id="choise-gear-ratio-old-school-el" name="gear-choice" value="gearRatioOldSchool" checked>
-        <label for="choise-gear-ratio-old-school-el">Old school gear ratio</label><br>
-        <input type="radio" id="choise-gear-ratio-in-mm-el" name="gear-choice" value="gearRatioToOneTurnLength">
-        <label for="choise-gear-ratio-in-mm-el">Gear ration in mm rotation</label><br><br>
-    </form>
+            </div>
+            <div class="col col-4 text-center ">
+                <p id="gear-ratio-el">Gear ratio: </p>
+                <p id="gear-ratio-old-el">Gear ratio in old school: </p>
+                <p id="gear-ratio-one-turn-el">Gear ratio in one turn in mm.: </p>
+
+            </div>
+            <form class="col col-4" id="gear-calculate-choise">
+                <div class="form-check">
+                    <input class="form-check-input" id="choise-gear-ratio-el" type="radio" name="gear-choice" value="gearRatio">
+                    <label class="form-check-label" for="choise-gear-ratio-el">Gear ratio </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" id="choise-gear-ratio-old-school-el" type="radio" name="gear-choice" value="gearRatioOldSchool" checked>
+                    <label class="form-check-label" for="choise-gear-ratio-old-school-el"> Old school gear ratio </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" id="choise-gear-ratio-in-mm-el" type="radio" name="gear-choice" value="gearRatioToOneTurnLength">
+                    <label class="form-check-label" for="choise-gear-ratio-in-mm-el"> Gear ration in mm rotation </label>
+                </div>          
+            </form>
+
+            <table class="table table-bordered border-primary text-center mt-3" id="output-table-el">
+            </table>
+   
+
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
 
     <script src="/app/gear-calculator.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
 
 
 </body>
